@@ -1,14 +1,14 @@
-int width = 640;
-int height = 360;
+int sW = 640;
+int sH = 360;
 int fps = 60;
 //--
-float posX = width/2;
-float posY = height/2;
+float posX = sW/2;
+float posY = sH/2;
 float startX=posX;
 float startY=posY;
 float endX=posX;
 float endY=posY;
-float circleSize = width/2;
+float circleSize = sW/2;
 //--
 float rotOffset = 135;
 float rotDeg = rotOffset;
@@ -33,8 +33,8 @@ color dotColor = dotColorOff;
 int numLines = 10;
 boolean nowSpinning = false;
 boolean singleSpin = false;
-float toggleBoxX = width-35;
-float toggleBoxY = height-35;
+float toggleBoxX = sW-35;
+float toggleBoxY = sH-35;
 float toggleBoxSize = 30;
 float fontSize = 14;
 PFont font;
@@ -46,7 +46,8 @@ boolean twoWay = true; //if true, you can spin circle either way
 //-----------------
 
 void setup() {
-  size(width,height);
+  size(50, 50, P2D);
+  surface.setSize(sW, sH);
   frameRate(fps);
   smooth();
   font = createFont("Arial",fontSize);
@@ -150,28 +151,28 @@ void spinRules(){
    stroke(255,0,0,33);
    fill(255,0,0,25);
   rectMode(CORNER);
-  rect((width/2)-(circleSize/2),(height/2)-(spinRulesGap/2),circleSize,spinRulesGap);
+  rect((sW/2)-(circleSize/2),(sH/2)-(spinRulesGap/2),circleSize,spinRulesGap);
  }
   if(twoWay){
-    if(startY<(height/2)-spinRulesGap||startY>(height/2)+spinRulesGap){
-     if(startX>mouseX && startY<height/2) {
+    if(startY<(sH/2)-spinRulesGap||startY>(sH/2)+spinRulesGap){
+     if(startX>mouseX && startY<sH/2) {
       rotDelta *= -1;
       spinLeft=false;
     } 
-    else if(startX<mouseX && startY<height/2) {
+    else if(startX<mouseX && startY<sH/2) {
       rotDelta = abs(rotDelta);
       spinLeft=true;
     } 
-    else if(startX>mouseX && startY>=height/2) {
+    else if(startX>mouseX && startY>=sH/2) {
       rotDelta = abs(rotDelta);
       spinLeft=true;
     } 
-    else if(startX<mouseX && startY>=height/2) {
+    else if(startX<mouseX && startY>=sH/2) {
       rotDelta *= -1;
       spinLeft=false;
     }
     } else {
-      if(mouseX>=width/2){
+      if(mouseX>=sW/2){
     if(mouseY>startY){
       rotDelta = abs(rotDelta);
       spinLeft=true;
@@ -181,7 +182,7 @@ void spinRules(){
       spinLeft=false;
 
     }
-      } else if(mouseX<width/2){
+      } else if(mouseX<sW/2){
           if(mouseY>startY){
       rotDelta *= -1;
       spinLeft=false;
@@ -285,4 +286,3 @@ boolean hitDetect(float x1, float y1, float w1, float h1, float x2, float y2, fl
     return false;
   }
 }
-
